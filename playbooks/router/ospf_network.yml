@@ -1,0 +1,29 @@
+---
+- name: Configure OSPF Network
+
+  hosts: cisco_routers
+  gather_facts: no
+
+  collections:
+    - cisco.ios
+
+  vars:
+
+    ospf_process_id: 10
+
+    network_address: 10.10.10.0
+    wildcard_mask: 0.0.0.255
+
+    area_id: 0
+
+  tasks:
+
+    - name: Configure OSPF Network
+
+      ios_config:
+
+        parents:
+          - router ospf {{ ospf_process_id }}
+
+        lines:
+          - network {{ network_address }} {{ wildcard_mask }} area {{ area_id }}
