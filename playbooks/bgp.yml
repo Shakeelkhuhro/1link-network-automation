@@ -1,0 +1,6 @@
+---
+- name: BGP Automation
+  hosts: cisco_routers
+  gather_facts: yes
+  roles:
+    - cisco_bgp

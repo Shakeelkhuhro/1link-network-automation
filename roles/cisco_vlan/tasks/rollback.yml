@@ -1,7 +1,8 @@
 ---
-- name: Rollback placeholder
+- name: Rollback Message
 
   debug:
 
     msg: >
-      Rollback logic will restore the latest backup
+      VLAN deployment failed.
+      Manual restore may be required.

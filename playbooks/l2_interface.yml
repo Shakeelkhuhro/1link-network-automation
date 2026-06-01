@@ -1,0 +1,6 @@
+---
+- name: Layer2 Interface Automation
+  hosts: cisco_switches
+  gather_facts: yes
+  roles:
+    - cisco_l2_interface

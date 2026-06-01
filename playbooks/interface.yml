@@ -1,6 +1,6 @@
 ---
-- name: VLAN Automation
+- name: Interface Automation
   hosts: cisco_switches
   gather_facts: yes
   roles:
-    - cisco_vlan
+    - cisco_interface

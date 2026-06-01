@@ -1,0 +1,6 @@
+---
+- name: OSPF Automation
+  hosts: cisco_routers
+  gather_facts: yes
+  roles:
+    - cisco_ospf

@@ -1,0 +1,6 @@
+---
+- name: Security Hardening
+  hosts: all
+  gather_facts: yes
+  roles:
+    - hardening

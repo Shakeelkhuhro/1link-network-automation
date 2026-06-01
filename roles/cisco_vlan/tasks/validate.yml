@@ -1,0 +1,19 @@
+---
+- name: Validate VLAN ID
+
+  assert:
+
+    that:
+      - vlan_id | int >= 1
+      - vlan_id | int <= 4094
+
+    fail_msg: "Invalid VLAN ID"
+
+- name: Validate VLAN Name
+
+  assert:
+
+    that:
+      - vlan_name | length > 0
+
+    fail_msg: "VLAN Name Missing"
