@@ -1,0 +1,9 @@
+---
+- name: Verify SSH
+
+  cisco.ios.ios_command:
+
+    commands:
+      - show ip ssh
+
+  register: ssh_output

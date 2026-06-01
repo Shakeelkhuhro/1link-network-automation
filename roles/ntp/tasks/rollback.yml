@@ -1,0 +1,6 @@
+---
+- name: Rollback Message
+
+  debug:
+
+    msg: "NTP deployment failed"

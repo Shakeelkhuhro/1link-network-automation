@@ -1,0 +1,6 @@
+---
+- name: Fortinet Backup Placeholder
+
+  debug:
+
+    msg: "Fortinet backup would run here"

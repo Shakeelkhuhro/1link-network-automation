@@ -1,6 +1,9 @@
 ---
-- name: Route Automation
+- name: Static Route Automation
+
   hosts: cisco_routers
-  gather_facts: yes
+
+  gather_facts: no
+
   roles:
     - cisco_route

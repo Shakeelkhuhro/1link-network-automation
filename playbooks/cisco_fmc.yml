@@ -1,7 +1,9 @@
 ---
 - name: Cisco FMC Automation
-  hosts: localhost
-  connection: local
+
+  hosts: fmcs
+
   gather_facts: no
+
   roles:
     - cisco_fmc

@@ -1,0 +1,44 @@
+---
+- name: Configure Static Route
+
+  cisco.ios.ios_static_routes:
+
+    config:
+
+      - address_families:
+
+          - afi: ipv4
+
+            routes:
+
+              - dest: "{{ destination }}"
+
+                next_hops:
+
+                  - forward_router_address: "{{ next_hop }}"
+
+    state: merged
+
+  when: route_state == 'present'
+
+- name: Remove Static Route
+
+  cisco.ios.ios_static_routes:
+
+    config:
+
+      - address_families:
+
+          - afi: ipv4
+
+            routes:
+
+              - dest: "{{ destination }}"
+
+                next_hops:
+
+                  - forward_router_address: "{{ next_hop }}"
+
+    state: deleted
+
+  when: route_state == 'absent'

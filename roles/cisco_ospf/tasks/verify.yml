@@ -1,0 +1,9 @@
+---
+- name: Verify OSPF
+
+  cisco.ios.ios_command:
+
+    commands:
+      - show ip ospf neighbor
+
+  register: ospf_output

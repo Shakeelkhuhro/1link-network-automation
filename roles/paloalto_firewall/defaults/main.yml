@@ -1,0 +1,8 @@
+---
+rule_name: ""
+source_zone: "TRUST"
+destination_zone: "DMZ"
+source_ip: "any"
+destination_ip: "any"
+application: "ssl"
+action: "allow"

@@ -1,0 +1,6 @@
+---
+- name: Palo Alto Backup Placeholder
+
+  debug:
+
+    msg: "Backup would run here"

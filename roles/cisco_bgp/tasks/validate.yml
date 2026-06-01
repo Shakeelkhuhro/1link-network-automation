@@ -1,0 +1,9 @@
+---
+- name: Validate BGP ASN
+
+  assert:
+
+    that:
+      - bgp_asn | int > 0
+
+    fail_msg: "Invalid BGP ASN"

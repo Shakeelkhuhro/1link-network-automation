@@ -1,0 +1,9 @@
+---
+- name: Validate Policy Name
+
+  assert:
+
+    that:
+      - policy_name | length > 0
+
+    fail_msg: "Policy name is required"

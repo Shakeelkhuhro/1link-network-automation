@@ -1,0 +1,28 @@
+---
+- name: Enable SSH
+
+  cisco.ios.ios_config:
+
+    lines:
+
+      - ip ssh version 2
+
+- name: Disable Telnet
+
+  cisco.ios.ios_config:
+
+    lines:
+
+      - transport input ssh
+
+    parents:
+
+      - line vty 0 4
+
+- name: Configure Logging
+
+  cisco.ios.ios_config:
+
+    lines:
+
+      - logging host {{ logging_server }}

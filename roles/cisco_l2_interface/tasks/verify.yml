@@ -1,0 +1,18 @@
+---
+- name: Verify Interface
+
+  cisco.ios.ios_command:
+
+    commands:
+      - show running-config interface {{ interface_name }}
+
+  register: interface_output
+
+- name: Validate Deployment
+
+  assert:
+
+    that:
+      - interface_name in interface_output.stdout[0]
+
+    fail_msg: "Interface verification failed"

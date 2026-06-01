@@ -1,0 +1,9 @@
+---
+- name: Validate Rule Name
+
+  assert:
+
+    that:
+      - rule_name | length > 0
+
+    fail_msg: "Rule name required"

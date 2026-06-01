@@ -1,0 +1,9 @@
+---
+- name: Validate ACL Name
+
+  assert:
+
+    that:
+      - acl_name | length > 0
+
+    fail_msg: "ACL Name Missing"

@@ -1,0 +1,20 @@
+---
+- name: Verify Route
+
+  cisco.ios.ios_command:
+
+    commands:
+      - show ip route
+
+  register: route_output
+
+- name: Validate Deployment
+
+  assert:
+
+    that:
+      - destination.split('/')[0] in route_output.stdout[0]
+
+    fail_msg: "Route verification failed"
+
+  when: route_state == 'present'

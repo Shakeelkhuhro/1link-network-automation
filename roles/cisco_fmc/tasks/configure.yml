@@ -1,0 +1,8 @@
+---
+- name: FMC Policy Placeholder
+
+  debug:
+
+    msg: >
+      Create FMC policy:
+      {{ policy_name }}

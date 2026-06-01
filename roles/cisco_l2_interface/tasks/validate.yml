@@ -1,0 +1,30 @@
+---
+- name: Validate Interface
+
+  assert:
+
+    that:
+      - interface_name | length > 0
+
+    fail_msg: "Interface Name Missing"
+
+- name: Validate Mode
+
+  assert:
+
+    that:
+      - mode in ['access', 'trunk']
+
+    fail_msg: "Mode must be access or trunk"
+
+- name: Validate Access VLAN
+
+  assert:
+
+    that:
+      - access_vlan | int >= 1
+      - access_vlan | int <= 4094
+
+    fail_msg: "Invalid Access VLAN"
+
+  when: mode == 'access'

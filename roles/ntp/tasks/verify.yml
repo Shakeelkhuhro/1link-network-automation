@@ -1,0 +1,9 @@
+---
+- name: Verify NTP
+
+  cisco.ios.ios_command:
+
+    commands:
+      - show ntp associations
+
+  register: ntp_output

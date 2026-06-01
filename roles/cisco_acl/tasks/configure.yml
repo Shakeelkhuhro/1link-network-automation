@@ -1,0 +1,34 @@
+---
+- name: Configure ACL
+
+  cisco.ios.ios_acls:
+
+    config:
+
+      - afi: ipv4
+
+        acls:
+
+          - name: "{{ acl_name }}"
+
+            aces:
+
+              - sequence: 10
+
+                grant: permit
+
+                source:
+
+                  address: "{{ source_network }}"
+
+                  wildcard_bits: "{{ source_wildcard }}"
+
+                destination:
+
+                  address: "{{ destination_network }}"
+
+                  wildcard_bits: "{{ destination_wildcard }}"
+
+    state: merged
+
+  when: acl_state == 'present'

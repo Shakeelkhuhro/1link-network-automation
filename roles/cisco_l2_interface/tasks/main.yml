@@ -1,0 +1,14 @@
+---
+- block:
+
+    - import_tasks: validate.yml
+
+    - import_tasks: backup.yml
+
+    - import_tasks: configure.yml
+
+    - import_tasks: verify.yml
+
+  rescue:
+
+    - import_tasks: rollback.yml

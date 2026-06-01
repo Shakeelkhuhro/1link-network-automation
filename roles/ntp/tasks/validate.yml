@@ -1,0 +1,9 @@
+---
+- name: Validate NTP List
+
+  assert:
+
+    that:
+      - ntp_servers | length > 0
+
+    fail_msg: "No NTP Servers Defined"

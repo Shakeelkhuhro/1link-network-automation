@@ -1,0 +1,8 @@
+---
+- name: Rollback Message
+
+  debug:
+
+    msg: >
+      Route deployment failed.
+      Manual rollback may be required.

@@ -1,0 +1,6 @@
+---
+- name: FMC Backup Placeholder
+
+  debug:
+
+    msg: "FMC backup would run here"

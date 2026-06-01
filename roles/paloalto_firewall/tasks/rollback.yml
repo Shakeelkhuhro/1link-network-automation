@@ -1,0 +1,6 @@
+---
+- name: Rollback Placeholder
+
+  debug:
+
+    msg: "Rollback Palo Alto deployment"

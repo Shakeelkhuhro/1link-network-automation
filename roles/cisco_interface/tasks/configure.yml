@@ -1,0 +1,38 @@
+---
+- name: Configure Description
+
+  cisco.ios.ios_interfaces:
+
+    config:
+
+      - name: "{{ interface_name }}"
+
+        description: "{{ description }}"
+
+    state: merged
+
+  when: description | length > 0
+
+- name: Enable Interface
+
+  cisco.ios.ios_interfaces:
+
+    config:
+
+      - name: "{{ interface_name }}"
+
+        enabled: true
+
+  when: admin_state == 'up'
+
+- name: Disable Interface
+
+  cisco.ios.ios_interfaces:
+
+    config:
+
+      - name: "{{ interface_name }}"
+
+        enabled: false
+
+  when: admin_state == 'down'

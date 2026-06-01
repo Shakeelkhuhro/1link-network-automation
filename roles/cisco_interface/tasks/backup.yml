@@ -1,0 +1,31 @@
+---
+- name: Backup Running Config
+
+  cisco.ios.ios_command:
+
+    commands:
+      - show running-config
+
+  register: running_config
+
+- name: Create Backup Folder
+
+  delegate_to: localhost
+
+  file:
+
+    path: "backups/{{ inventory_hostname }}"
+
+    state: directory
+
+- name: Save Backup
+
+  delegate_to: localhost
+
+  copy:
+
+    content: "{{ running_config.stdout[0] }}"
+
+    dest: >
+      backups/{{ inventory_hostname }}/
+      {{ inventory_hostname }}_before_interface.cfg

@@ -1,0 +1,32 @@
+---
+- name: Configure Access Port
+
+  cisco.ios.ios_l2_interfaces:
+
+    config:
+
+      - name: "{{ interface_name }}"
+
+        mode: access
+
+        access:
+
+          vlan: "{{ access_vlan }}"
+
+    state: merged
+
+  when: mode == 'access'
+
+- name: Configure Trunk Port
+
+  cisco.ios.ios_l2_interfaces:
+
+    config:
+
+      - name: "{{ interface_name }}"
+
+        mode: trunk
+
+    state: merged
+
+  when: mode == 'trunk'

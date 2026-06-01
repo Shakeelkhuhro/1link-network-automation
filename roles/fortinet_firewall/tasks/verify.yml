@@ -1,0 +1,6 @@
+---
+- name: Verify Placeholder
+
+  debug:
+
+    msg: "Verify Fortinet policy deployment"

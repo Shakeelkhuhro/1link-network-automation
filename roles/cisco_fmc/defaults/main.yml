@@ -1,0 +1,6 @@
+---
+policy_name: ""
+source_network: ""
+destination_network: ""
+service: ""
+action: "ALLOW"

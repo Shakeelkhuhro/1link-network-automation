@@ -1,0 +1,9 @@
+---
+- name: Backup Running Config
+
+  cisco.ios.ios_command:
+
+    commands:
+      - show running-config
+
+  register: running_config

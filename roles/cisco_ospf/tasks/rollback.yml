@@ -1,0 +1,7 @@
+---
+- name: Rollback Message
+
+  debug:
+
+    msg: >
+      OSPF deployment failed.

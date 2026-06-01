@@ -1,6 +1,9 @@
 ---
 - name: Fortinet Firewall Automation
+
   hosts: fortigates
-  gather_facts: yes
+
+  gather_facts: no
+
   roles:
     - fortinet_firewall

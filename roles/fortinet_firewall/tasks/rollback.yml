@@ -1,0 +1,6 @@
+---
+- name: Rollback Placeholder
+
+  debug:
+
+    msg: "Fortinet rollback would execute here"

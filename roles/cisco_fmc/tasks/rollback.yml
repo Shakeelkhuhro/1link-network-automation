@@ -1,0 +1,6 @@
+---
+- name: FMC Rollback Placeholder
+
+  debug:
+
+    msg: "Rollback FMC deployment"

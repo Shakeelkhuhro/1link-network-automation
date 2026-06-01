@@ -1,0 +1,9 @@
+---
+- name: Validate Process ID
+
+  assert:
+
+    that:
+      - process_id | int > 0
+
+    fail_msg: "Invalid OSPF Process ID"

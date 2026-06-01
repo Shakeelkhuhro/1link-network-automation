@@ -1,6 +1,9 @@
 ---
 - name: Palo Alto Firewall Automation
+
   hosts: paloaltos
-  gather_facts: yes
+
+  gather_facts: no
+
   roles:
     - paloalto_firewall

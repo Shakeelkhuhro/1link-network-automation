@@ -1,0 +1,33 @@
+---
+- name: Configure Fortinet Policy
+
+  fortinet.fortios.fortios_firewall_policy:
+
+    vdom: "{{ vdom }}"
+
+    state: present
+
+    firewall_policy:
+
+      policyid: "{{ policy_id }}"
+
+      name: "{{ policy_name }}"
+
+      action: "{{ action }}"
+
+      srcintf:
+        - name: "{{ srcintf }}"
+
+      dstintf:
+        - name: "{{ dstintf }}"
+
+      srcaddr:
+        - name: "{{ srcaddr }}"
+
+      dstaddr:
+        - name: "{{ dstaddr }}"
+
+      service:
+        - name: "{{ service }}"
+
+      schedule: always

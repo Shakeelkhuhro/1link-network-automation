@@ -1,0 +1,9 @@
+---
+- name: Verify BGP
+
+  cisco.ios.ios_command:
+
+    commands:
+      - show ip bgp summary
+
+  register: bgp_output

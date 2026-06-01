@@ -1,6 +1,9 @@
 ---
 - name: NTP Automation
+
   hosts: all
-  gather_facts: yes
+
+  gather_facts: no
+
   roles:
     - ntp

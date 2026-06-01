@@ -1,0 +1,6 @@
+---
+- name: Verify Placeholder
+
+  debug:
+
+    msg: "Verify Palo Alto deployment"

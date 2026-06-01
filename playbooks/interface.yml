@@ -1,6 +1,9 @@
 ---
 - name: Interface Automation
+
   hosts: cisco_switches
-  gather_facts: yes
+
+  gather_facts: no
+
   roles:
     - cisco_interface

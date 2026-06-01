@@ -1,0 +1,27 @@
+---
+- name: Validate Destination
+
+  assert:
+
+    that:
+      - destination | length > 0
+
+    fail_msg: "Destination Network Missing"
+
+- name: Validate Next Hop
+
+  assert:
+
+    that:
+      - next_hop is match("^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$")
+
+    fail_msg: "Invalid Next Hop IP"
+
+- name: Validate Route State
+
+  assert:
+
+    that:
+      - route_state in ['present','absent']
+
+    fail_msg: "route_state must be present or absent"
