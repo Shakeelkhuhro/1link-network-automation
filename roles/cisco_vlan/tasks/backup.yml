@@ -1,0 +1,30 @@
+---
+- name: Gather running configuration
+
+  cisco.ios.ios_command:
+
+    commands:
+      - show running-config
+
+  register: running_config
+
+- name: Create backup directory
+
+  delegate_to: localhost
+
+  file:
+
+    path: "backups/{{ inventory_hostname }}"
+    state: directory
+
+- name: Save backup
+
+  delegate_to: localhost
+
+  copy:
+
+    content: "{{ running_config.stdout[0] }}"
+
+    dest: >
+      backups/{{ inventory_hostname }}/
+      {{ inventory_hostname }}_{{ ansible_date_time.iso8601_basic }}.cfg

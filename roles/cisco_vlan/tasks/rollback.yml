@@ -1,0 +1,7 @@
+---
+- name: Rollback placeholder
+
+  debug:
+
+    msg: >
+      Rollback logic will restore the latest backup

@@ -1,0 +1,11 @@
+---
+- name: Configure VLAN
+
+  cisco.ios.ios_vlans:
+
+    config:
+
+      - vlan_id: "{{ vlan_id }}"
+        name: "{{ vlan_name }}"
+
+    state: merged
