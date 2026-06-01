@@ -1,0 +1,34 @@
+---
+- name: Security Hardening
+
+  hosts: all
+
+  tasks:
+
+    - name: Disable Telnet
+
+      ios_config:
+
+        lines:
+
+          - transport input ssh
+
+        parents:
+
+          - line vty 0 4
+
+    - name: Enable Logging
+
+      ios_config:
+
+        lines:
+
+          - logging host 10.10.10.x
+
+    - name: Enable SSH
+
+      ios_config:
+
+        lines:
+
+          - ip ssh version 2

@@ -1,0 +1,14 @@
+---
+- name: Configure NTP
+
+  hosts: all
+
+  tasks:
+
+    - name: NTP
+      ios_config:
+
+        lines:
+
+          - ntp server 10.10.10.x
+          - ntp server 10.10.10.x

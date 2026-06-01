@@ -1,0 +1,22 @@
+---
+- name: Interface State
+
+  hosts: cisco_switches
+
+  collections:
+    - cisco.ios
+
+  vars:
+
+    interface: GigabitEthernet1/0/5
+    state_value: up
+
+  tasks:
+
+    - name: Interface State
+      ios_interfaces:
+
+        config:
+
+          - name: "{{ interface }}"
+            enabled: "{{ state_value == 'up' }}"

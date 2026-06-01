@@ -1,0 +1,22 @@
+---
+- name: Configure Trunk
+
+  hosts: cisco_switches
+
+  collections:
+    - cisco.ios
+
+  vars:
+    interface: GigabitEthernet1/0/24
+
+  tasks:
+    - name: Configure Trunk
+      ios_l2_interfaces:
+
+        config:
+
+          - name: "{{ interface }}"
+
+            mode: trunk
+
+        state: merged

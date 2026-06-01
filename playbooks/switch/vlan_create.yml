@@ -1,0 +1,23 @@
+---
+- name: Create VLAN
+
+  hosts: cisco_switches
+
+  gather_facts: no
+
+  collections:
+    - cisco.ios
+
+  vars:
+    vlan_id: 300
+    vlan_name: PAYMENTS
+
+  tasks:
+    - name: Create VLAN
+
+      ios_vlans:
+        config:
+          - vlan_id: "{{ vlan_id }}"
+            name: "{{ vlan_name }}"
+
+        state: merged
