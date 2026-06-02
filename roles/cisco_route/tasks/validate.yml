@@ -1,27 +1,39 @@
 ---
 - name: Validate Destination
-
   assert:
-
     that:
       - destination | length > 0
-
     fail_msg: "Destination Network Missing"
 
 - name: Validate Next Hop
-
   assert:
-
     that:
       - next_hop is match("^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$")
-
     fail_msg: "Invalid Next Hop IP"
 
 - name: Validate Route State
-
   assert:
-
     that:
       - route_state in ['present','absent']
-
     fail_msg: "route_state must be present or absent"
+
+- name: Check Existing Route
+  cisco.ios.ios_command:
+    commands:
+      - show ip route {{ destination }}
+  register: route_check
+  ignore_errors: yes
+
+- name: Fail if Route Already Exists
+  fail:
+    msg: "Route already exists"
+  when:
+    - route_state == "present"
+    - next_hop in route_check.stdout[0]
+
+- name: Fail if Route Missing
+  fail:
+    msg: "Route does not exist"
+  when:
+    - route_state == "absent"
+    - next_hop not in route_check.stdout[0]

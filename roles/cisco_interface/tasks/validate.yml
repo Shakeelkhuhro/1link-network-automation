@@ -1,27 +1,22 @@
 ---
 - name: Validate Interface Name
-
   assert:
-
     that:
       - interface_name | length > 0
 
-    fail_msg: "Interface Name Missing"
-
 - name: Validate Admin State
-
   assert:
-
     that:
       - admin_state in ['', 'up', 'down']
 
-    fail_msg: "admin_state must be up or down"
+- name: Check Interface Exists
+  cisco.ios.ios_command:
+    commands:
+      - show interfaces {{ interface_name }}
+  register: int_check
+  ignore_errors: yes
 
-- name: Validate Description
-
-  assert:
-
-    that:
-      - description is string
-
-    fail_msg: "Description must be string"
+- name: Fail if Interface Missing
+  fail:
+    msg: "Interface {{ interface_name }} does not exist"
+  when: int_check.failed

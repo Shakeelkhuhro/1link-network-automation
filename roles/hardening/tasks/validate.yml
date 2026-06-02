@@ -1,7 +1,5 @@
 ---
 - name: Validate Logging Server
-
   assert:
-
     that:
       - logging_server | length > 0

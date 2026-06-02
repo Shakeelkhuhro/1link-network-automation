@@ -1,10 +1,7 @@
 ---
-policy_id: 100
-policy_name: ""
-srcintf: "port1"
-dstintf: "port2"
+srcintf: "any"
+dstintf: "any"
 srcaddr: "all"
 dstaddr: "all"
 service: "HTTPS"
-action: "accept"
-vdom: "root"
+firewall_action: "accept"

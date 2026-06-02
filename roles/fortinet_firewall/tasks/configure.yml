@@ -13,7 +13,7 @@
 
       name: "{{ policy_name }}"
 
-      action: "{{ action }}"
+      action: "{{ rule_action }}"
 
       srcintf:
         - name: "{{ srcintf }}"

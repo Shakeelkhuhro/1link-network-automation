@@ -1,9 +1,21 @@
 ---
 - name: Validate BGP ASN
-
   assert:
-
     that:
       - bgp_asn | int > 0
 
-    fail_msg: "Invalid BGP ASN"
+- name: Validate Neighbor
+  assert:
+    that:
+      - neighbor_ip is match("^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$")
+
+- name: Check Existing Neighbor
+  cisco.ios.ios_command:
+    commands:
+      - show running-config | section router bgp
+  register: bgp_output
+
+- name: Fail if Neighbor Exists
+  fail:
+    msg: "BGP Neighbor already exists"
+  when: neighbor_ip in bgp_output.stdout[0]

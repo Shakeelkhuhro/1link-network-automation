@@ -20,4 +20,4 @@
     application:
       - "{{ application }}"
 
-    action: "{{ action }}"
+    action: "{{ rule_action }}"

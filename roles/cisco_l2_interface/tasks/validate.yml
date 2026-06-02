@@ -1,30 +1,43 @@
 ---
 - name: Validate Interface
-
   assert:
-
     that:
       - interface_name | length > 0
 
-    fail_msg: "Interface Name Missing"
-
 - name: Validate Mode
-
   assert:
-
     that:
-      - mode in ['access', 'trunk']
-
-    fail_msg: "Mode must be access or trunk"
+      - mode in ['access','trunk']
 
 - name: Validate Access VLAN
-
   assert:
-
     that:
       - access_vlan | int >= 1
       - access_vlan | int <= 4094
-
-    fail_msg: "Invalid Access VLAN"
-
   when: mode == 'access'
+
+- name: Verify Interface Exists
+  cisco.ios.ios_command:
+    commands:
+      - show interfaces {{ interface_name }}
+  register: interface_check
+  ignore_errors: yes
+
+- name: Fail if Interface Missing
+  fail:
+    msg: "Interface does not exist"
+  when: interface_check.failed
+
+- name: Verify Access VLAN Exists
+  cisco.ios.ios_command:
+    commands:
+      - show vlan brief
+  register: vlan_check
+  when: mode == 'access'
+
+- name: Fail if VLAN Missing
+  fail:
+    msg: "Access VLAN does not exist"
+  when:
+    - mode == 'access'
+    - (' ' ~ access_vlan|string ~ ' ') not in vlan_check.stdout[0]

@@ -1,19 +1,33 @@
 ---
 - name: Validate VLAN ID
-
   assert:
-
     that:
       - vlan_id | int >= 1
       - vlan_id | int <= 4094
-
     fail_msg: "Invalid VLAN ID"
 
 - name: Validate VLAN Name
-
   assert:
-
     that:
       - vlan_name | length > 0
-
     fail_msg: "VLAN Name Missing"
+
+- name: Get Existing VLANs
+  cisco.ios.ios_command:
+    commands:
+      - show vlan brief
+  register: vlan_output
+
+- name: Fail if VLAN Already Exists
+  fail:
+    msg: "VLAN {{ vlan_id }} already exists"
+  when:
+    - vlan_state | default('present') == 'present'
+    - (' ' ~ vlan_id|string ~ ' ') in vlan_output.stdout[0]
+
+- name: Fail if VLAN Does Not Exist
+  fail:
+    msg: "VLAN {{ vlan_id }} does not exist"
+  when:
+    - vlan_state | default('present') == 'absent'
+    - (' ' ~ vlan_id|string ~ ' ') not in vlan_output.stdout[0]

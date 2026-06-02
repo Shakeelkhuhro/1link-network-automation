@@ -1,9 +1,19 @@
 ---
 - name: Validate ACL Name
-
   assert:
-
     that:
       - acl_name | length > 0
-
     fail_msg: "ACL Name Missing"
+
+- name: Check Existing ACLs
+  cisco.ios.ios_command:
+    commands:
+      - show access-lists
+  register: acl_output
+
+- name: Fail if ACL Already Exists
+  fail:
+    msg: "ACL {{ acl_name }} already exists"
+  when:
+    - acl_state | default('present') == 'present'
+    - acl_name in acl_output.stdout[0]

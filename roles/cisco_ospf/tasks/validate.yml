@@ -1,9 +1,21 @@
 ---
 - name: Validate Process ID
-
   assert:
-
     that:
       - process_id | int > 0
 
-    fail_msg: "Invalid OSPF Process ID"
+- name: Validate Network
+  assert:
+    that:
+      - network | length > 0
+
+- name: Check Existing OSPF
+  cisco.ios.ios_command:
+    commands:
+      - show running-config | section router ospf
+  register: ospf_output
+
+- name: Fail if Network Already Advertised
+  fail:
+    msg: "Network already exists in OSPF"
+  when: network in ospf_output.stdout[0]
